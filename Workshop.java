@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Workshop<T extends IVehicleWorkshop> {
+public class Workshop<T extends Vehicle> {
 
     private int max;
     private List<T> vehicles;
@@ -16,8 +16,8 @@ public class Workshop<T extends IVehicleWorkshop> {
         vehicles = new ArrayList<>();
     }
 
-    double getX() {return x;}
-    double getY() {return y;}
+    public double getX() {return x;}
+    public double getY() {return y;}
 
     public void load(T vehicle){
         if (vehicles.size() < max) {
@@ -31,9 +31,8 @@ public class Workshop<T extends IVehicleWorkshop> {
         vehicle.gas(0);
         if (vehicles.contains(vehicle)) {
             return vehicles.remove(vehicles.indexOf(vehicle));
-        } else {
-           return null;
         }
+        return null;
     }
 }
 

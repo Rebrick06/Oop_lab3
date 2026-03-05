@@ -60,21 +60,21 @@ public class CarController {
 
                 //So car can't move out of window
                 if (car.getX() < 0 || car.getX() > frameWidth - carWidth) {
-                    double speed = car.getCurrentSpeed();
+                    double oldSpeed = car.getCurrentSpeed();
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
-                    car.currentSpeed = speed;
+                    car.setSpeed(oldSpeed);
                 }
 
                 if (car.getY() < 0 || car.getY() > frameHeight - carHeight) {
-                    double speed = car.getCurrentSpeed();
+                    double oldSpeed = car.getCurrentSpeed();
                     car.stopEngine();
                     car.turnLeft();
                     car.turnLeft();
                     car.startEngine();
-                    car.currentSpeed = speed;
+                    car.setSpeed(oldSpeed);
                 }
 
                 if (car instanceof Volvo240) {

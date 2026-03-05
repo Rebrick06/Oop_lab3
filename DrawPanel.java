@@ -12,35 +12,16 @@ public class DrawPanel extends JPanel{
 
 
     // Just a single image, TODO: Generalize
-    BufferedImage volvoImage;
     // To keep track of a single car's position
-    Point volvoPoint = new Point();
+    private ArrayList<Vehicle> cars;
 
-    BufferedImage volvoWorkshopImage;
     Point volvoWorkshopPoint = new Point(0,300); //Hur vi kopplar denna till Workshops x och y?
-
+    BufferedImage volvoWorkshopImage;
     BufferedImage saab95Image;
-    Point saab95Point = new Point();
-
     BufferedImage scaniaImage;
-    Point scaniaPoint = new Point();
+    BufferedImage volvoImage;
 
     // TODO: Make this general for all cars
-    // Just nu jättehårdkodat. Sparar tekniskt sätt x, y två gånger, i både drawPanel och carC
-    void moveit(int x, int y, Vehicle car) {
-        if (car instanceof Volvo240) {
-            volvoPoint.x = x;
-            volvoPoint.y = y;
-        }
-        else if (car instanceof Saab95) {
-            saab95Point.x = x;
-            saab95Point.y = y;
-        }
-        else if (car instanceof Scania) {
-            scaniaPoint.x = x;
-            scaniaPoint.y = y;
-        }
-    }
 
 
 
@@ -74,10 +55,18 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+
+        for (Vehicle car : cars) {
+
+            BufferedImage image = null;
+
+            if (car instanceof Volvo240) image = volvoImage;
+            else if (car instanceof Saab95) image = saab95Image;
+            else if (car instanceof Scania) image = scaniaImage;
+
+            g.drawImage(image, (int)car.getX(), (int)car.getY(), null);
+        }
         g.drawImage(volvoWorkshopImage, volvoWorkshopPoint.x, volvoWorkshopPoint.y, null);
-        g.drawImage(saab95Image, saab95Point.x, saab95Point.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
 
     }
 }
