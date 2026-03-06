@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class CarController {
     // member fields:
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
+// The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
     // The timer is started with a listener (see below) that executes the statements
     // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    protected Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
@@ -26,7 +26,7 @@ public class CarController {
     Workshop<Volvo240> volvoWorkshop = new Workshop<>(10, 0, 300);
     //methods:
 
-    public static void main(String[] args) {
+/*public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
 
@@ -43,7 +43,7 @@ public class CarController {
 
         // Start the timer
         cc.timer.start();
-    }
+    }*/
 
     /* Each step the TimerListener moves all the cars in the list and tells the
      * view to update its images. Change this method to your needs.

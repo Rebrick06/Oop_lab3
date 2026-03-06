@@ -1,11 +1,13 @@
 import java.awt.*;
 
-public abstract class Vehicle implements Moveable {
+public abstract class Vehicle implements Moveable, IVehicleWorkshop {
     protected int nrDoors; // Number of doors on the car
     protected final Engine engine; // Engine power of the car
     private final Movement movement; // The current speed of the car
     protected Color color; // Color of the car
     public String modelName; // The car model
+    private boolean inWorkshop = false;
+
 
 
     public Vehicle(int nrDoors, Color color, double enginePower, String modelName){
@@ -22,10 +24,12 @@ public abstract class Vehicle implements Moveable {
         return nrDoors;
     }
 
-    /*public double getEnginePower(){
-        return engine.getEnginePower();
-    }*/
+    public void enterWorkshop() { inWorkshop = true; stopEngine(); }
+    public void leaveWorkshop() { inWorkshop = false; }
 
+    public double getEnginePower(){
+        return engine.getEnginePower();
+    }
     public double getCurrentSpeed(){
         return movement.getCurrentSpeed();
     }
@@ -93,7 +97,10 @@ public abstract class Vehicle implements Moveable {
 
     @Override
     public void move() {
-        movement.move();
+        if(!inWorkshop && engine.engineOn && getCurrentSpeed() > 0){
+            movement.move();
+        }
+
     }
 
     @Override
