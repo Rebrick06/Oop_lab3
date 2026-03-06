@@ -2,7 +2,7 @@ import java.awt.*;
 
 public abstract class Vehicle implements Moveable {
     protected int nrDoors; // Number of doors on the car
-    private final Engine engine; // Engine power of the car
+    protected final Engine engine; // Engine power of the car
     private final Movement movement; // The current speed of the car
     protected Color color; // Color of the car
     public String modelName; // The car model
@@ -22,9 +22,9 @@ public abstract class Vehicle implements Moveable {
         return nrDoors;
     }
 
-    public double getEnginePower(){
+    /*public double getEnginePower(){
         return engine.getEnginePower();
-    }
+    }*/
 
     public double getCurrentSpeed(){
         return movement.getCurrentSpeed();
@@ -60,7 +60,7 @@ public abstract class Vehicle implements Moveable {
 
     private void incrementSpeed(double amount){
         double newSpeed = getCurrentSpeed() + speedFactor() * amount;
-        if(newSpeed > getEnginePower()) newSpeed = getEnginePower();
+        if(newSpeed > engine.getEnginePower()) newSpeed = engine.getEnginePower();
         movement.setCurrentSpeed(newSpeed);
     }
 
@@ -72,7 +72,7 @@ public abstract class Vehicle implements Moveable {
     
     public void gas(double amount){
         if(amount > 0 && amount < 1){
-            if (getCurrentSpeed() < getEnginePower() && getCurrentSpeed() > 0 ) {
+            if (getCurrentSpeed() < engine.getEnginePower() && getCurrentSpeed() > 0 && engine.engineOn ) {
                 incrementSpeed(amount);
                 move();
             }
@@ -81,7 +81,7 @@ public abstract class Vehicle implements Moveable {
 
     public void brake(double amount){
         if(amount > 0 && amount < 1) {
-            if (getCurrentSpeed() < getEnginePower() && getCurrentSpeed() > 0 ) {
+            if (getCurrentSpeed() < engine.getEnginePower() && getCurrentSpeed() > 0 && !engine.engineOn) {
                 decrementSpeed(amount);
                 if (getCurrentSpeed() <= 0) {
                     movement.setCurrentSpeed(0);

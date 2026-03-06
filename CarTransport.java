@@ -34,12 +34,12 @@ public class CarTransport extends Truck{
         if (getCurrentSpeed() != 0) return;
         if (container.canNotLoad(vehicle)) return;
 
-        if (Math.abs(vehicle.x - this.x) > 1 || Math.abs(vehicle.y - this.y) > 1) return;
+        if (Math.abs(vehicle.getX() - this.getX()) > 1 || Math.abs(vehicle.getY() - this.getY()) > 1) return;
 
         container.loadVehicle(vehicle);
 
-        vehicle.x = this.x;
-        vehicle.y = this.y;
+        vehicle.setPosition(this.getX(), this.getY());
+
 
     }
 
@@ -49,8 +49,7 @@ public class CarTransport extends Truck{
 
         Vehicle vehicle = container.unloadVehicle();
 
-        vehicle.x = this.x + 1;
-        vehicle.y = this.y + 1;
+        vehicle.setPosition(this.getX(), this.getY());
 
     }
 
@@ -59,8 +58,7 @@ public class CarTransport extends Truck{
         if (ramp.isRampUp()) {
             super.move();
             for (Vehicle vehicle : container.getLoaded()) {
-                vehicle.x = this.x;
-                vehicle.y = this.y;
+                vehicle.setPosition(this.getX(), this.getY());
             }
         }
     }

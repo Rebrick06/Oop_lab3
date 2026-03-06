@@ -83,9 +83,6 @@ public class CarController {
                     }
                 }
 
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveit(x, y, car);
             }
             // repaint() calls the paintComponent method of the panel
             frame.drawPanel.repaint();
@@ -147,6 +144,18 @@ public class CarController {
     void stopAll() {
         for (Vehicle car : cars) {
             car.stopEngine();
+        }
+    }
+
+    void addCar(){
+
+
+
+    }
+
+    void removeCar(){
+        if (!cars.isEmpty()) {
+            cars.remove(0);
         }
     }
 

@@ -8,7 +8,7 @@ public abstract class Truck extends Vehicle {
 
     @Override
     protected double speedFactor() {
-        return enginePower * 0.01;
+        return engine.getEnginePower() * 0.01;
     }
 
 }
