@@ -30,9 +30,9 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
-        cc.cars.add(new Saab95());
-        cc.cars.add(new Scania());
+        cc.cars.add(CarFactory.createCar("Volvo"));
+        cc.cars.add(CarFactory.createCar("Saab"));
+        cc.cars.add(CarFactory.createCar("Scania"));
 
         cc.cars.get(0).setPosition(0, 0);
         cc.cars.get(1).setPosition(0, 100);
@@ -148,14 +148,14 @@ public class CarController {
     }
 
     void addCar(){
-
-
-
+        if (cars.size() < 10 ) {
+            cars.add(CarFactory.createCar("Volvo"));
+        }
     }
 
     void removeCar(){
         if (!cars.isEmpty()) {
-            cars.remove(0);
+            cars.removeFirst();
         }
     }
 
