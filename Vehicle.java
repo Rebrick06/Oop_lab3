@@ -72,7 +72,7 @@ public abstract class Vehicle implements Moveable {
     
     public void gas(double amount){
         if(amount > 0 && amount < 1){
-            if (getCurrentSpeed() < engine.getEnginePower() && getCurrentSpeed() > 0 && engine.engineOn ) {
+            if (getCurrentSpeed() < engine.getEnginePower() && engine.engineOn ) {
                 incrementSpeed(amount);
                 move();
             }
@@ -81,7 +81,7 @@ public abstract class Vehicle implements Moveable {
 
     public void brake(double amount){
         if(amount > 0 && amount < 1) {
-            if (getCurrentSpeed() < engine.getEnginePower() && getCurrentSpeed() > 0 && !engine.engineOn) {
+            if (getCurrentSpeed() < engine.getEnginePower() && !engine.engineOn) {
                 decrementSpeed(amount);
                 if (getCurrentSpeed() <= 0) {
                     movement.setCurrentSpeed(0);
