@@ -25,6 +25,7 @@ public abstract class Vehicle implements Moveable, IVehicleWorkshop {
     }
 
     public void enterWorkshop() { inWorkshop = true; stopEngine(); }
+    public boolean isInWorkshop() {return inWorkshop;}
     public void leaveWorkshop() { inWorkshop = false; }
 
     public double getEnginePower(){

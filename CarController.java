@@ -78,7 +78,7 @@ public class CarController {
                 }
 
                 if (car instanceof Volvo240) {
-                    if ((Math.abs(volvoWorkshop.getX()) - car.getX()) < 5 && Math.abs(volvoWorkshop.getY() - car.getY()) < 5) {
+                    if (!car.isInWorkshop() && Math.abs(volvoWorkshop.getX()) - car.getX() < 5 && Math.abs(volvoWorkshop.getY() - car.getY()) < 5) {
                         volvoWorkshop.load((Volvo240) car);
                     }
                 }
